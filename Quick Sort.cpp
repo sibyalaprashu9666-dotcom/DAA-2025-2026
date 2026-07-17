@@ -1,8 +1,11 @@
 #include <iostream>
+#include <chrono>
+
 using namespace std;
+using namespace std::chrono;
 
 int partition(int arr[], int low, int high) {
-    int pivot = arr[high];   
+    int pivot = arr[high];
     int i = low - 1;
 
     for (int j = low; j < high; j++) {
@@ -43,12 +46,30 @@ int main() {
         cin >> arr[i];
     }
 
+    auto start = high_resolution_clock::now();
+
     quickSort(arr, 0, n - 1);
+
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
 
     cout << "\nSorted Array: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
+
+    cout << "\n\nStarting Time : "
+         << duration_cast<microseconds>(start.time_since_epoch()).count()
+         << " microseconds";
+
+    cout << "\nEnding Time   : "
+         << duration_cast<microseconds>(stop.time_since_epoch()).count()
+         << " microseconds";
+
+    cout << "\nExecution Time: "
+         << duration.count()
+         << " microseconds" << endl;
 
     return 0;
 }

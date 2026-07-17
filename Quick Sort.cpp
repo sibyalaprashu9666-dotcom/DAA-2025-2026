@@ -55,17 +55,17 @@ int main() {
         cout << arr[i] << " ";
     }
 
-    cout << "\n\nStarting Time : "
-         << duration_cast<microseconds>(start.time_since_epoch()).count()
-         << " microseconds";
+    cout << "\n\nStarting Time : ";
+    cout << duration_cast<microseconds>(start.time_since_epoch()).count();
+    cout << " microseconds";
 
-    cout << "\nEnding Time   : "
-         << duration_cast<microseconds>(stop.time_since_epoch()).count()
-         << " microseconds";
+    cout << "\nEnding Time   : ";
+    cout << duration_cast<microseconds>(stop.time_since_epoch()).count();
+    cout << " microseconds";
 
-    cout << "\nExecution Time: "
-         << duration.count()
-         << " microseconds" << endl;
+    cout << "\nExecution Time: ";
+    cout  << duration.count();
+    cout << " microseconds" << endl;
 
     return 0;
 }

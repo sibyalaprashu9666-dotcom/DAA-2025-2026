@@ -2,7 +2,6 @@
 #include <chrono>
 
 using namespace std;
-using namespace std::chrono;
 
 int main() {
     int a;
@@ -17,7 +16,8 @@ int main() {
         cin >> arr[i];
     }
 
-    auto start = high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
+
     for (int i = 0; i < a - 1; i++) {
         for (int j = 0; j < a - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -28,9 +28,9 @@ int main() {
         }
     }
 
-    auto stop = high_resolution_clock::now();
+    auto stop = std::chrono::high_resolution_clock::now();
 
-    auto duration = duration_cast<microseconds>(stop - start);
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
     cout << "\nSorted Array: ";
     for (int i = 0; i < a; i++) {
@@ -38,10 +38,10 @@ int main() {
     }
 
     cout << "\n\nStarting Time : ";
-    cout << duration_cast<microseconds>(start.time_since_epoch()).count();
+    cout << std::chrono::duration_cast<std::chrono::microseconds>(start.time_since_epoch()).count();
 
     cout << "\nEnding Time   : ";
-    cout << duration_cast<microseconds>(stop.time_since_epoch()).count();
+    cout << std::chrono::duration_cast<std::chrono::microseconds>(stop.time_since_epoch()).count();
 
     cout << "\nExecution Time: ";
     cout << duration.count() << " microseconds";

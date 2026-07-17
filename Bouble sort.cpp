@@ -1,40 +1,38 @@
 #include <iostream>
-#include <chrono>
 using namespace std;
-int main() {
-    int a;
-    cout << "Enter the number of elements: ";
-    cin >> a;
-    int arr[a];
-    cout << "Enter " << a << " elements: ";
-    for (int i = 0; i < a; i++) {
-        cin >> arr[i];
-    }
-    auto start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < a - 1; i++) {
-        for (int j = 0; j < a - i - 1; j++) {
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;   // optimization flag
+        for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
+                // swap arr[j] and arr[j+1]
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
+                swapped = true;
             }
         }
+        // if no two elements were swapped, array is sorted
+        if (!swapped) break;
     }
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    cout << "\nSorted Array: ";
-    for (int i = 0; i < a; i++) {
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array: ";
+    for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
-    }
+    cout << endl;
 
-    cout << "\n\nStarting Time : ";
-    cout << std::chrono::duration_cast<std::chrono::microseconds>(start.time_since_epoch()).count();
+    bubbleSort(arr, n);
 
-    cout << "\nEnding Time   : ";
-    cout << std::chrono::duration_cast<std::chrono::microseconds>(stop.time_since_epoch()).count();
-
-    cout << "\nExecution Time: ";
-    cout << duration.count() << " microseconds";
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
 
     return 0;
 }

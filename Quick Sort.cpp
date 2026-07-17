@@ -1,9 +1,7 @@
 #include <iostream>
 #include <chrono>
-
 using namespace std;
 using namespace std::chrono;
-
 int partition(int arr[], int low, int high) {
     int pivot = arr[high];
     int i = low - 1;
@@ -38,9 +36,7 @@ int main() {
 
     cout << "Enter the number of elements: ";
     cin >> n;
-
     int arr[n];
-
     cout << "Enter " << n << " elements: ";
     for (int i = 0; i < n; i++) {
         cin >> arr[i];

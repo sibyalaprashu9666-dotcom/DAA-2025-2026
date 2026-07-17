@@ -1,26 +1,24 @@
 #include <iostream>
 #include <chrono>
-
 using namespace std;
 using namespace std::chrono;
-
 int main() {
-    int n;
+    int a;
 
     cout << "Enter the number of elements: ";
-    cin >> n;
+    cin >> a;
 
-    int arr[n];
+    int arr[a];
 
-    cout << "Enter " << n << " elements: ";
-    for (int i = 0; i < n; i++) {
+    cout << "Enter " << a << " elements: ";
+    for (int i = 0; i < a; i++) {
         cin >> arr[i];
     }
 
     auto start = high_resolution_clock::now();
 
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
+    for (int i = 0; i < a - 1; i++) {
+        for (int j = 0; j < a - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
@@ -34,7 +32,7 @@ int main() {
     auto duration = duration_cast<microseconds>(stop - start);
 
     cout << "\nSorted Array: ";
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < a; i++) {
         cout << arr[i] << " ";
     }
 

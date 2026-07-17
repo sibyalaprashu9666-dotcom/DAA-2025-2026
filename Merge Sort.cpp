@@ -1,5 +1,8 @@
 #include <iostream>
+#include <chrono>
+
 using namespace std;
+using namespace std::chrono;
 
 void merge(int arr[], int left, int mid, int right) {
     int n1 = mid - left + 1;
@@ -38,9 +41,10 @@ void merge(int arr[], int left, int mid, int right) {
         k++;
     }
 }
+
 void mergeSort(int arr[], int left, int right) {
     if (left < right) {
-        int mid = (left + right) / 2;
+        int mid = left + (right - left) / 2;
 
         mergeSort(arr, left, mid);
         mergeSort(arr, mid + 1, right);
@@ -57,17 +61,34 @@ int main() {
 
     int arr[n];
 
-    cout << "Enter " << n << " elements: ";
+    cout << "Enter " << n << " elements:\n";
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
 
+    auto start = high_resolution_clock::now();
+
     mergeSort(arr, 0, n - 1);
+
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
 
     cout << "\nSorted Array: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
+
+    cout << "\n\nStarting Time (since epoch): "
+         << duration_cast<microseconds>(start.time_since_epoch()).count()
+         << " microseconds";
+
+    cout << "\nEnding Time (since epoch): "
+         << duration_cast<microseconds>(stop.time_since_epoch()).count()
+         << " microseconds";
+
+    cout << "\nExecution Time: "
+         << duration.count() << " microseconds" << endl;
 
     return 0;
 }

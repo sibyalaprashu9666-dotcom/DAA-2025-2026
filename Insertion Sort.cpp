@@ -1,25 +1,20 @@
 #include <iostream>
 #include <chrono>
-
 using namespace std;
 using namespace std::chrono;
-
 int main() {
-    int n;
-
+    int a;
     cout << "Enter the number of elements: ";
-    cin >> n;
-
-    int arr[n];
-
-    cout << "Enter " << n << " elements: ";
-    for (int i = 0; i < n; i++) {
+    cin >> a;
+    int arr[a];
+    cout << "Enter " << a << " elements: ";
+    for (int i = 0; i < a; i++) {
         cin >> arr[i];
     }
 
     auto start = high_resolution_clock::now();
 
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < a; i++) {
         int key = arr[i];
         int j = i - 1;
 
@@ -40,17 +35,17 @@ int main() {
         cout << arr[i] << " ";
     }
 
-    cout << "\n\nStarting Time : "
-         << duration_cast<microseconds>(start.time_since_epoch()).count()
-         << " microseconds";
+    cout << "\n\nStarting Time : ";
+    cout << duration_cast<microseconds>(start.time_since_epoch()).count();
+    cout << " microseconds";
 
-    cout << "\nEnding Time   : "
-         << duration_cast<microseconds>(stop.time_since_epoch()).count()
-         << " microseconds";
+    cout << "\nEnding Time   : ";
+    cout << duration_cast<microseconds>(stop.time_since_epoch()).count();
+    cout << " microseconds";
 
-    cout << "\nExecution Time: "
-         << duration.count()
-         << " microseconds" << endl;
+    cout << "\nExecution Time: ";
+    cout << duration.count();
+    cout << " microseconds" << endl;
 
     return 0;
 }
